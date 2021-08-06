@@ -1,0 +1,68 @@
+{
+  "objectName": "event",
+  "alias": "event",
+  "schemaDescription": "",
+  "schemaObject": {
+    "name": "event",
+    "columns": {
+      "id": { "generated": true, "primary": true, "type": "int" }
+    },
+    "relations": {
+      "participants": {
+        "target": "core-sports-dev_event_participants",
+        "type": "one-to-many",
+        "joinColumn": {
+          "name": "participantsId",
+          "referencedColumnName": "event_id"
+        },
+        "onDelete": "SET NULL",
+        "cascade": false,
+        "nullable": true,
+        "inverseSide": "event_participants_inverseside"
+      },
+      "goal": {
+        "target": "core-sports-dev_goal",
+        "type": "many-to-one",
+        "joinColumn": { "name": "goalId", "referencedColumnName": "id" },
+        "onDelete": "SET NULL",
+        "cascade": false,
+        "nullable": true,
+        "inverseSide": "event_goal_inverseside"
+      }
+    }
+  },
+  "schemaValidation": {
+    "name": "event",
+    "properties": {
+      "id": { "label": "ID", "fieldType": "default_primary" },
+      "participants": {
+        "relatedFieldLabel": "event",
+        "relatedFieldHelpText": "",
+        "label": "event participants",
+        "helpText": null,
+        "fieldType": "one-to-many",
+        "private": null,
+        "description": null,
+        "required": false,
+        "type": "array",
+        "items": { "type": "objects" }
+      },
+      "goal": {
+        "relatedFieldLabel": "event",
+        "relatedFieldHelpText": "",
+        "label": "Goal",
+        "helpText": null,
+        "fieldType": "many-to-one",
+        "private": null,
+        "description": null,
+        "required": false,
+        "type": ["number", "object"]
+      }
+    },
+    "inverseSideProperties": {
+      "event_participants_inverseside": { "label": "event", "helpText": "" },
+      "event_goal_inverseside": { "label": "event", "helpText": "" }
+    }
+  },
+  "relationsToUpdate": ["goal", "participants"]
+}

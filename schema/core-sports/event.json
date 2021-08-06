@@ -1,0 +1,208 @@
+{
+  "objectName": "event",
+  "alias": "event",
+  "schemaDescription": "",
+  "schemaObject": {
+    "name": "event",
+    "columns": {
+      "id": { "generated": true, "primary": true, "type": "int" },
+      "Name": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "varchar",
+        "unique": null
+      },
+      "Type": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "enum",
+        "unique": null,
+        "enum": [
+          "Study Hall",
+          "Community Service",
+          "Team Event",
+          "Video Session",
+          "Recruiting Event",
+          "Others"
+        ]
+      },
+      "Start_time": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "timestamp",
+        "unique": null
+      },
+      "End_time": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "timestamp",
+        "unique": null
+      },
+      "Attachments": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "json",
+        "unique": null
+      },
+      "Description": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "varchar",
+        "unique": null
+      },
+      "Duration": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "numeric",
+        "unique": null
+      },
+      "Participants": {
+        "generated": false,
+        "indexed": false,
+        "nullable": true,
+        "primary": false,
+        "required": false,
+        "type": "json",
+        "unique": null
+      }
+    },
+    "relations": {}
+  },
+  "schemaValidation": {
+    "name": "event",
+    "properties": {
+      "id": { "label": "ID", "fieldType": "default_primary" },
+      "Name": {
+        "fieldType": "long_text",
+        "helpText": null,
+        "label": "Name",
+        "private": false,
+        "description": null,
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000000
+      },
+      "Type": {
+        "fieldType": "select",
+        "helpText": null,
+        "label": "Event Type",
+        "private": false,
+        "description": null,
+        "type": "string",
+        "enum": [
+          "Study Hall",
+          "Community Service",
+          "Team Event",
+          "Video Session",
+          "Recruiting Event",
+          "Others"
+        ],
+        "useAlphabeticalOrder": false
+      },
+      "Start_time": {
+        "fieldType": "date_time",
+        "helpText": null,
+        "label": "Start_time",
+        "private": false,
+        "description": null,
+        "type": "date-time",
+        "format": "date-time"
+      },
+      "End_time": {
+        "fieldType": "date_time",
+        "helpText": null,
+        "label": "End_time",
+        "private": false,
+        "description": null,
+        "type": "date-time",
+        "format": "date-time"
+      },
+      "Attachments": {
+        "fieldType": "json",
+        "helpText": null,
+        "label": "Attachments",
+        "private": false,
+        "description": null,
+        "type": ["object", "string"],
+        "default": { "files": [{ "name": " ", "url": "https://" }, {}, {}] },
+        "format": "json"
+      },
+      "Description": {
+        "fieldType": "long_text",
+        "helpText": null,
+        "label": "Event description",
+        "private": false,
+        "description": null,
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1e24
+      },
+      "Duration": {
+        "fieldType": "number",
+        "helpText": null,
+        "label": "Duration",
+        "private": false,
+        "description": null,
+        "type": "number",
+        "format": "number",
+        "minValue": 0,
+        "maxValue": 100000000000000000000
+      },
+      "Participants": {
+        "fieldType": "json",
+        "helpText": null,
+        "label": "participants",
+        "private": false,
+        "description": null,
+        "type": ["object", "string"],
+        "default": { "participants": [] },
+        "format": "json"
+      },
+      "participants": {
+        "relatedFieldLabel": "event",
+        "relatedFieldHelpText": "",
+        "label": "event participants",
+        "helpText": null,
+        "fieldType": "one-to-many",
+        "private": null,
+        "description": null,
+        "required": false,
+        "type": "array",
+        "items": { "type": "objects" }
+      },
+      "goal": {
+        "relatedFieldLabel": "event",
+        "relatedFieldHelpText": "",
+        "label": "Goal",
+        "helpText": null,
+        "fieldType": "many-to-one",
+        "private": null,
+        "description": null,
+        "required": false,
+        "type": ["number", "object"]
+      }
+    },
+    "inverseSideProperties": {}
+  },"fieldsToAdd": []
+}
